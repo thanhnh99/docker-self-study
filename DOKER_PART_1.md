@@ -84,7 +84,20 @@ Docker sẽ send một request thông qua REST API tới docker daemon để l�
 9. **Docker system prune** dùng để xoá các vùng dữ liệu rác sinh ra khi dừng chạy container (tương tự với image)
 10. **Docker container run -d <container_name>** dùng để detect các container so tên là <container_name> đang chạy
 
-**III. Một số shorthand (Câu lệnh ngắn trong docker
+**III. Một số shorthand (Câu lệnh ngắn trong docker)
+
+|-----------------------------------|-------------------------------------------|------------------
+|command							|		explain								|	shorthand
+|-----------------------------------|-------------------------------------------|------------------
+|docker image ls					|	Lists all images						|	docker images
+|docker image rm <image>			|	Removes an image						|	docker rmi
+|docker image pull <image>			|	Pulls image from a docker registry		|	docker pull
+|docker container ls -a				|	Lists all containers					|	docker ps -a
+|docker container run <image>		|	Runs a container from an image			|	docker run
+|docker container rm <container>	|	Removes a container						|	docker rm
+|docker container stop <container>	|	Stops a container						|	docker stop
+|docker container exec <container>	|	Executes a command inside the container |	docker exec
+
 **IV. Running and stopping container
 
 Bắt đầu 1 process với -it và thêm -rm vào để kill và remove nó ngay sau khi exits
