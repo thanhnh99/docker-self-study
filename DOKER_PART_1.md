@@ -1,6 +1,6 @@
-**Docker part 1* *
-Mục tiêu: Hiểu được image với container, build 1 image với docker từ ứng dụng có sẵn
-**Bất cập khi sử dụng cơ chế triển khai ứng dụng truyền thống:
+** Docker part 1  
+Mục tiêu: Hiểu được image với container, build 1 image với docker từ ứng dụng có sẵn  
+**Bất cập khi sử dụng cơ chế triển khai ứng dụng truyền thống:  
 1. Work on my machine => Chay được trên máy mình nhưng sang máy khác thì die
 2. Chạy nhiều ứng dụng với nhiều yêu cầu phiên bản phần mềm tốn thời gian setup lại môi trường
 	=> chạy 1 cái Python 2.7 -> cài python 2.7
@@ -13,46 +13,48 @@ Mục tiêu: Hiểu được image với container, build 1 image với docker t
 
 ** Do đó, dùng docker là hữu hiệu nhất
 --------------------------------------------------------
------------------- **BẮT ĐẦU THÔI** --------------------
-**I. Các khái niệm cơ bản trong Docker:
+------------------ **BẮT ĐẦU THÔI** --------------------  
+**I. Các khái niệm cơ bản trong Docker:  
 Trong docker, có 2 khái niệm chính cần chú ý đó là Docker file, Image và container. Container có thể hiểu là một kho
 chứa, môi trường để chạy ứng dụng. Còn Image là công thức để tạo ra môi trường đó. Container chính là một
 instances của Image. Hiểu đơn giản, mapping với việc nấu ăn thì
-*Docker file: công thức để tạo ra Image
-*Image: Là hình ảnh của món ăn
-*Container: Là món ăn được tạo ra.
+*Docker file: công thức để tạo ra Image  
+*Image: Là hình ảnh của món ăn  
+*Container: Là món ăn được tạo ra.  
 
 
 Hiểu đơn giản vậy đủ rồi, giờ đến hiểu phức tạp (một số tính chất)
 (RẢNH THÌ ĐỌC, KHÔNG RẢNH THÌ THÔI NHÁ!!!)
-1. Docker file:
+1. Docker file:  
 	- Docker file là 1 file có tên là Dockerfile:)) => Quả định nghĩa ảo thật đấy (Đ hiểu ông nào nghĩ ra quả định nghĩa này, t đi copy thôi :V)
 	- Docker file là 1 file gồm các bước để tạo ra Image, trong đó ghi rõ các bước để setup các môi trường như nào, tài cái nào về, chạy như nào
-	- Cấu trúc 1 file Dockerfile cơ bản nhé:
-		*FROM <image>:<tag> (image là tên image, tag thường là version của iamge đấy)
+	- Cấu trúc 1 file Dockerfile cơ bản nhé:  
+		*FROM <image>:<tag> (image là tên image, tag thường là version của iamge đấy)  
 
-		*RUN <install some dependencies>
+		*RUN <install some dependencies>  
 
-		*CMD <command that is executed on `docker container run`>
+		*CMD <command that is executed on `docker container run`>  
 2. Image:
 	- Image là một file không thể thay đổi, không thể sửa một image đã tồn tại. Có thể hiểu nó là immutable,
-	không thể thay đổi sau khi đã tạo.
-	- List ra tất cả các **image** : * docker image ls (ls thì cứ hiểu là list cho dễ nhớ) 
+	không thể thay đổi sau khi đã tạo.  
+	- List ra tất cả các **image** : * docker image ls (ls thì cứ hiểu là list cho dễ nhớ)   
 	
-3. Container:
+3. Container:  
 	- Chứa tất cả các yêu cầu để chạy 1 ứng dụng
 	- Bị cô lập với máy host (máy cài docker)
 	- List ra tất cả các **container** đang chạy: *docker container ls (nhắc lại ls là list nhá)
-		|$ docker container ls													|
-        |CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES	|
+		|$ docker container ls							|
+        	|CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES	|
 	- Thêm -a đi : (docker container ls -a), nó ra tất cả cá container đang tồn tại luônnnn (dù là đã exits )
 		 
-		|$ docker container ls -a																							|				
-		|CONTAINER ID   IMAGE           COMMAND      CREATED          STATUS                      PORTS     NAMES			|
-		|b7a53260b513   hello-world     "/hello"     5 minutes ago    Exited (0) 5 minutes ago              brave_bhabha	|
-		|1cd4cb01482d   hello-world     "/hello"     8 minutes ago    Exited (0) 8 minutes ago              vibrant_bell	|
-**II. Docker CLI cơ bản (Cái này quan trọng)
-Chúng ta sử dụng command line để tương tác với "Docker Engine" bao gồm CLI, Rest API, docker daemon
+		$ docker container ls -a																							
+		|CONTAINER ID   |IMAGE           |COMMAND      |CREATED          |STATUS                      |PORTS     |NAMES		|
+		|---------------|----------------|-------------|-----------------|----------------------------|----------|--------------|
+		|b7a53260b513   |hello-world     |"/hello"     |5 minutes ago    |Exited (0) 5 minutes ago    |          |brave_bhabha	|
+		|1cd4cb01482d   |hello-world     |"/hello"     |8 minutes ago    |Exited (0) 8 minutes ago    |          |vibrant_bell	|
+		
+**II. Docker CLI cơ bản (Cái này quan trọng)  
+Chúng ta sử dụng command line để tương tác với "Docker Engine" bao gồm CLI, Rest API, docker daemon  
 Ví dụ nhá: Khi chạy "*docker container run *" thì sau cái màn hình toàn chữ là chữ mình nhìn thấy thì 
 Docker sẽ send một request thông qua REST API tới docker daemon để lấy image, container và các tài nguyên khác.
 
@@ -83,7 +85,7 @@ Docker sẽ send một request thông qua REST API tới docker daemon để l�
 
 **III. Một số shorthand (Câu lệnh ngắn trong docker)
 
-|-----------------------------------|-------------------------------------------|------------------
+
 |command							|		explain								|	shorthand
 |-----------------------------------|-------------------------------------------|------------------
 |docker image ls					|	Lists all images						|	docker images
