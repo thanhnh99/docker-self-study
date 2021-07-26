@@ -70,15 +70,19 @@ Docker sẽ send một request thông qua REST API tới docker daemon để l�
 											*docker exec ubuntu bash* tương ứng với mở terminal của ubuntu ra)
 
 **Có các trường hợp thực hiện lệnh *docker iamge rm hello-world* sẽ không được vì các trường hợp sau:
- => Đã tồn tại một container tương tự đang chạy:
-	|$ docker image rm hello-world 
-	|Error response from daemon: conflict: unable to remove repository reference 
-	|	"hello-world" (must force) - container <container ID> is using its referenced image <image ID>
+ => Đã tồn tại một container tương tự đang chạy:  
+	|$ docker image rm hello-world |  
+	|Error response from daemon: conflict: unable to remove repository reference |  
+	|	"hello-world" (must force) - container <container ID> is using its referenced image <image ID>|  
+	
+	
 	Chạy *docker container ls -a* sẽ thấy 
-	|$ docker container ls -a
-	|CONTAINER ID   IMAGE           COMMAND        CREATED          STATUS                      PORTS     NAMES
-	|b7a53260b513   hello-world     "/hello"       35 minutes ago   Exited (0) 35 minutes ago             brave_bhabha
-	|1cd4cb01482d   hello-world     "/hello"       41 minutes ago   Exited (0) 41 minutes ago             vibrant_bell
+	$ docker container ls -a   
+	
+	|CONTAINER ID   |IMAGE           |COMMAND        |CREATED          |STATUS                      |PORTS     |NAMES	|
+	|---------------|----------------|---------------|-----------------|----------------------------|----------|------------|
+	|b7a53260b513   |hello-world     |"/hello"       |35 minutes ago   |Exited (0) 35 minutes ago   |          |brave_bhabha|
+	|1cd4cb01482d   |hello-world     |"/hello"       |41 minutes ago   |Exited (0) 41 minutes ago   |          |vibrant_bell|
 **Có thể filter docker theo tên bằng cách:** *docker container ls -a | grep <container_name>
 9. **Docker system prune** dùng để xoá các vùng dữ liệu rác sinh ra khi dừng chạy container (tương tự với image)
 10. **Docker container run -d <container_name>** dùng để detect các container so tên là <container_name> đang chạy
