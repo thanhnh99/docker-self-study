@@ -43,17 +43,14 @@ Hiểu đơn giản vậy đủ rồi, giờ đến hiểu phức tạp (một s
 	- Chứa tất cả các yêu cầu để chạy 1 ứng dụng
 	- Bị cô lập với máy host (máy cài docker)
 	- List ra tất cả các **container** đang chạy: *docker container ls (nhắc lại ls là list nhá)
-		 -----------------------------------------------------------------------
 		|$ docker container ls													|
         |CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES	|
-		 -----------------------------------------------------------------------
 	- Thêm -a đi : (docker container ls -a), nó ra tất cả cá container đang tồn tại luônnnn (dù là đã exits )
-		 -------------------------------------------------------------------------------------------------------------------
+		 
 		|$ docker container ls -a																							|				
 		|CONTAINER ID   IMAGE           COMMAND      CREATED          STATUS                      PORTS     NAMES			|
 		|b7a53260b513   hello-world     "/hello"     5 minutes ago    Exited (0) 5 minutes ago              brave_bhabha	|
 		|1cd4cb01482d   hello-world     "/hello"     8 minutes ago    Exited (0) 8 minutes ago              vibrant_bell	|
-		 -------------------------------------------------------------------------------------------------------------------
 **II. Docker CLI cơ bản (Cái này quan trọng)
 Chúng ta sử dụng command line để tương tác với "Docker Engine" bao gồm CLI, Rest API, docker daemon
 Ví dụ nhá: Khi chạy "*docker container run *" thì sau cái màn hình toàn chữ là chữ mình nhìn thấy thì 
